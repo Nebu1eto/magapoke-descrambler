@@ -1,6 +1,6 @@
-# magapoke-descrambler
+# image-descrambler
 
-This is Proof-of-Concept project for download and descramble images from [Magazine Pocket](https://pocket.shonenmagazine.com/). 
+This is Proof-of-Concept project for download and descramble 4x4 scrambled images with Xorshift32 Random Number.
 
 ## Disclaimer
 
