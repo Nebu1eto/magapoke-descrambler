@@ -38,13 +38,17 @@ jobs:
         OS_LIST: linux darwin windows
         ARCH_LIST: amd64 arm64
       run:
+        mkdir -p ./dist/
         for OS in $OS_LIST
         do
             for ARCH in $ARCH_LIST
             do
-                GOOS=$OS GOARCH=$ARCH go build -o ./dist/descrambler-$OS-$ARCH ./main
+                GOOS=$OS GOARCH=$ARCH go build -o ./dist/descrambler-$OS-$ARCH
             done
         done
+
+        mv ./dist/descrambler-windows-arm64 ./dist/descrambler-windows-arm64.exe
+        mv ./dist/descrambler-windows-amd64 ./dist/descrambler-windows-amd64.exe
 
     - uses: actions/upload-artifact@v4
       with:
