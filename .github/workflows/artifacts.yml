@@ -37,19 +37,19 @@ jobs:
         # GO_WORK: ${{ github.workspace }}/go.work
         OS_LIST: linux darwin windows
         ARCH_LIST: amd64 arm64
-      run:
+      run: |
         mkdir -p ./dist/
         for OS in $OS_LIST
         do
             for ARCH in $ARCH_LIST
             do
-                GOOS=$OS GOARCH=$ARCH go build -o ./dist/descrambler-$OS-$ARCH
-            done
-        done
-
-        mv ./dist/descrambler-windows-arm64 ./dist/descrambler-windows-arm64.exe
-        mv ./dist/descrambler-windows-amd64 ./dist/descrambler-windows-amd64.exe
-
+                if [ "$OS" = "windows" ]; then
+                    GOOS=$OS GOARCH=$ARCH go build -o ./dist/descrambler-$OS-$ARCH.exe
+                else
+                    GOOS=$OS GOARCH=$ARCH go build -o ./dist/descrambler-$OS-$ARCH
+                fi
+            done;
+        done;
     - uses: actions/upload-artifact@v4
       with:
         name: artifacts-${{ github.sha }}
