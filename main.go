@@ -13,7 +13,7 @@ import (
 	"sync"
 )
 
-// JSON file schema
+// NOTE: represent the JSON schema (From /web/episode/viewer API response)
 type InputData struct {
 	ScrambleSeed uint32   `json:"scramble_seed"`
 	PageList     []string `json:"page_list"`
